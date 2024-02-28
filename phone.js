@@ -11,7 +11,7 @@ const loadPhone = async (SerchText, isShowAll) =>{
 
 const displayPhones = (phones, isShowAll) =>{
  
- const phoneConiter = document.getElementById("phone-continer");
+    const phoneConiter = document.getElementById("phone-continer");
     phoneConiter.textContent = '';
 
      // বারো টা ফোনোর বেশি হলে শো অল বাটন দেখাবো 
@@ -42,41 +42,53 @@ const displayPhones = (phones, isShowAll) =>{
      <h2 class="card-title">${phone.phone_name}</h2>
      <p>If a dog chews shoes whose shoes does he choose?</p>
      <div class="card-actions justify-center">
-       <button  onclick="handelShowDetails('(${phone.slug})')"class="btn btn-primary">Show Details</button>
-     </div>
+       <button  onclick="handelShowDetails('${phone.slug}')"class="btn btn-primary">Show Details</button></div>
    </div>
  `
  // step number -4 appendChild
  phoneConiter.appendChild(phoneCard);
 });
 
-toggelLodingSpiner(false);
+toggelLodingSpiner(false); 
 }
 
 
 const handelShowDetails = async (id) =>{
-  const res = await fetch(`https://openapi.programming-hero.com/api/phone/(${id})`);
+
+  // console.log('click showdetles', id);
+  const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
   const data = await res.json();
   const phone = data.data
   ShowPhoneDetils(phone);
+
 }
 
 
 const ShowPhoneDetils = (phone) =>{
   console.log(phone)
-   const phoneName = document.getElementById("phone-name");
+   const phoneName = document.getElementById('show-detils-phone-name');
    phoneName.innerText = phone.name;
-
-   const ShowdelesConiter = document.getElementById("Show-detils-continer");
-    ShowdelesConiter.innerHTML = `
-    <img src="${phone.image}">
-
+  
+   const ShowDetilesConiter = document.getElementById('show-detils-continer');
+   ShowDetilesConiter.innerHTML = `
+   <div class="justify-center flex items-center">
+   <img src="${phone.image}">
+   </div>  
+    <p class="text-[22ppx] font-medium"><span class="text-2xl font-semibold">brand: </span>${phone?.brand}</p>
+    <p class="text-[18px]"><span class="text-3xl font-semibold">Storage: </span>${phone?.mainFeatures?.storage}</p>
+    <p class="text-[18px]"><span class="text-2xl font-semibold">displaySize: </span>${phone?.mainFeatures?.displaySize}</p>
+    <p class="text-[18px]"><span class="text-2xl font-semibold">memory: </span>${phone?.mainFeatures?.memory}</p>
+    <p class="text-[18px]"><span class="text-2xl font-semibold">sensors: </span>${phone?.mainFeatures?.sensors}</p>
+    <p class="text-[18px]"><span class="text-2xl font-semibold">GPS: </span>${phone?.others?.GPS || 'No GPS available'}</p>
+    <p class="text-[18px]"><span class="text-2xl font-semibold">ReleaseDate: </span>${phone?.releaseDate}</p>
+   
     `
+    my_modal_5.showModal()
 
 
-
- 
-  Show-ditles-modal.showModal();
+  
+    
+  
 }
 
 
