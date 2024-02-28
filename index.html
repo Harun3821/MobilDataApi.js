@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunting Phone ApI</title>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    
+    <header>
+      <h2 class="text-6xl">Hunting Phone</h2>
+    </header>
+    <main class="container mx-auto mt-8">
+       
+<!-------search input filed------>
+
+  <section class="bg-gray-200 p-2 mr-4 rounded-md">
+    <input id="search-filed"  type="text" placeholder="search....." class="input input-bordered input-primary w-full max-w-xs" />
+    <button onclick="handleSearch()"  class="btn btn-active btn-accent">search</button>
+    <!-- <input id="search-filed2"  type="text" placeholder="search....." class="input input-bordered input-primary w-full max-w-xs" />
+    <button onclick="handleSearch2()"  class="btn btn-active btn-accent">search2</button> -->
+  </section>
+
+  <section>
+    <!-----loading data------->
+    <div id="loading-spinner" class="text-center my-40 hidden">
+        <span class="loading loading-spinner loading-sm"></span>
+        </div>
+  </section>
+
+
+
+<section>
+  <div id="phone-continer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  </div>
+
+  <div id="Show-all-container" class="hidden text-center my-8">
+    <button onclick="handleShowAll()" class="btn btn-warning">Show All</button>
+  </div>
+
+</section>
+<!---------Show detals model---------->
+
+<!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn hidden" onclick="Show-ditles-modal.showModal()">open modal</button> -->
+<dialog id="Show-ditles-modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 id="phone-name" class="font-bold text-3xl"></h3>
+    
+    <div id="Show-detils-continer">
+
+    </div>
+
+
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="phone.js"></script>
+</body>
+</html>
